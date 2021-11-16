@@ -6,5 +6,20 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
 class Block {
-    
+    constructor(
+        index,
+        timestamp,
+        transaction,
+        precedingHash
+    ) {
+        this.index = index;
+        this.timestamp = timestamp;
+        this.transaction = transaction;
+        this.precedingHash = precedingHash;
+        this.hash = this.computeHash()
+    }
+
+    // computeHash() {
+
+    // }
 }
