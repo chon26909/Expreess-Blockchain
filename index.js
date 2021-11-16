@@ -21,7 +21,7 @@ class Block {
 
     computeHash() {
         return sha256(
-            this.index + this.precedingHash + this.timestamp + JSON.stringify(this.transaction);
-        )
+            this.index + this.precedingHash + this.timestamp + JSON.stringify(this.transaction).toString()
+        );
     }
 }
