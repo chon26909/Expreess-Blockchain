@@ -19,7 +19,7 @@ class Block {
         this.hash = this.computeHash()
     }
 
-    // computeHash() {
+    computeHash() {
 
-    // }
+    }
 }
