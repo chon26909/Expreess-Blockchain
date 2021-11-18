@@ -100,10 +100,18 @@ class ChonCoin extends BlockChain {
        res.status(200).json({ message: "Created", data: block })
     }
 
-    // appendNewChild = () => {
+    appendNewChild = (req,res) => {
 
-    //     const { tim } = req.body;
+        const { timestamp, transaction } = req.body;
 
-    //     const block = new Block(this.chain.length)
-    // }
+        const block = new Block(this.chain.length, timestamp, transaction);
+
+        this.addNewBlock(block); 
+        res.status(200).json({ message: "Chain Added!"})
+    }
 }
+
+const Controller = new ChonCoin();
+
+app.post('/api/blockchain', Controller.validateNewChain, Controller.craeteNewChain);
+// app.get("/api/blockchain",Controller.getChain)
