@@ -26,49 +26,49 @@ class Block {
     }
 }
 
-// class BlockChain {
-//     constructor() {
-//         this.id = '';
-//         this.name = '';
-//         this.blockchain = '';
-//         this.difficulty = '';
-//     }
+class BlockChain {
+    constructor() {
+        this.id = '';
+        this.name = '';
+        this.blockchain = '';
+        this.difficulty = '';
+    }
 
-//     create(id, name, genesis) {
-//         this.id = id;
-//         this.name = name;
-//         this.blockchain = [this.startGenesisblock(genesis)];
-//         this.difficulty = 4;
-//     }
+    create(id, name, genesis) {
+        this.id = id;
+        this.name = name;
+        this.blockchain = [this.startGenesisblock(genesis)];
+        this.difficulty = 4;
+    }
 
-//     startGenesisblock(genesis) {
-//         return new Block(0,genesis.date,genesis.transaction,"0");
-//     }
+    startGenesisblock(genesis) {
+        return new Block(0,genesis.date,genesis.transaction,"0");
+    }
 
-//     obtainLatestBLock() {
-//         return this.blockchain[this.blockchain.length -1 ];
-//     }
+    // obtainLatestBLock() {
+    //     return this.blockchain[this.blockchain.length -1 ];
+    // }
 
-//     addNewBlock() {
-//         newBlock.precedingHash = this.obtainLatestBLock().hash;
-//         newBlock.hash = newBlock.computeHash();
-//         this.blockchain.push(newBlock);
-//     }
+    // addNewBlock() {
+    //     newBlock.precedingHash = this.obtainLatestBLock().hash;
+    //     newBlock.hash = newBlock.computeHash();
+    //     this.blockchain.push(newBlock);
+    // }
 
-//     checkChainValidity() {
-//         for (let i = 0; i < this.blockchain.length; i++) {
-//             const currentBlock = this.blockchain[i];
-//             const precedingBlock = this.blockchain[i - 1];
+    // checkChainValidity() {
+    //     for (let i = 0; i < this.blockchain.length; i++) {
+    //         const currentBlock = this.blockchain[i];
+    //         const precedingBlock = this.blockchain[i - 1];
 
-//             if(currentBlock.hash !== currentBlock.computeHash()) {
-//                 return false;
-//             }
+    //         if(currentBlock.hash !== currentBlock.computeHash()) {
+    //             return false;
+    //         }
 
-//             if (currentBlock.precedingHash !== precedingBlock.hash()) {
-//                 return false;
-//             }
+    //         if (currentBlock.precedingHash !== precedingBlock.hash()) {
+    //             return false;
+    //         }
             
-//         }
-//         return true;
-//     }
-// }
+    //     }
+    //     return true;
+    // }
+}
