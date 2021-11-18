@@ -45,15 +45,15 @@ class BlockChain {
         return new Block(0,genesis.date,genesis.transaction,"0");
     }
 
-    // obtainLatestBLock() {
-    //     return this.blockchain[this.blockchain.length -1 ];
-    // }
+    obtainLatestBLock() {
+        return this.blockchain[this.blockchain.length -1 ];
+    }
 
-    // addNewBlock() {
-    //     newBlock.precedingHash = this.obtainLatestBLock().hash;
-    //     newBlock.hash = newBlock.computeHash();
-    //     this.blockchain.push(newBlock);
-    // }
+    addNewBlock() {
+        newBlock.precedingHash = this.obtainLatestBLock().hash;
+        newBlock.hash = newBlock.computeHash();
+        this.blockchain.push(newBlock);
+    }
 
     // checkChainValidity() {
     //     for (let i = 0; i < this.blockchain.length; i++) {
