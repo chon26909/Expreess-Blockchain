@@ -72,3 +72,38 @@ class BlockChain {
         return true;
     }
 }
+
+class ChonCoin extends BlockChain {
+
+    constructor() {
+        this.chain = [];
+    }
+
+    validateNewChain = (req,res) => {
+
+        const { id, name, genesis, genesis:{ date, transaction } } = req.body;
+
+        if (id && name && genesis && date && transaction) {
+            next();
+        }  
+        else {
+            res.status(400).json({ message: "Request format is not correct!" });
+        }
+    }
+
+    craeteNewChain(req,res) {
+
+        const { id, name, genesis } = req.body;
+
+       const block = this.create(id, name, genesis);
+
+       res.status(200).json({ message: "Created", data: block })
+    }
+
+    // appendNewChild = () => {
+
+    //     const { tim } = req.body;
+
+    //     const block = new Block(this.chain.length)
+    // }
+}
