@@ -116,9 +116,9 @@ class HiChonCoin extends BlockChain {
         res.status(200).json({ message: "Chain Added!"})
     }
 
-    // getChain = (rew,res) => {
-    //     res.status(200).json({chain: Globalchain})
-    // } 
+    getChain = (rew,res) => {
+        res.status(200).json({chain: Globalchain})
+    } 
 }
 
 const Controller = new HiChonCoin();
