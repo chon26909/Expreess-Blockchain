@@ -45,12 +45,13 @@ class BlockChain {
         return new Block(0,genesis.date,genesis.transaction,"0");
     }
 
-    obtainLatestBLock() {
+    obtainLatestBlock() {
+        console.log(this.blockchain)
         return this.blockchain[this.blockchain.length -1 ];
     }
 
-    addNewBlock() {
-        newBlock.precedingHash = this.obtainLatestBLock().hash;
+    addNewBlock(newBlock) {
+        newBlock.precedingHash = this.obtainLatestBlock().hash;
         newBlock.hash = newBlock.computeHash();
         this.blockchain.push(newBlock);
     }
@@ -82,9 +83,11 @@ class HiChonCoin extends BlockChain {
         this.chain = [];
     }
 
-    validateNewChain = (req,res) => {
+    validateNewChain = (req,res,next) => {
 
         const { id, name, genesis, genesis:{ date, transaction } } = req.body;
+
+        console.log(id , name , date , transaction)
 
         if (id && name && genesis && date && transaction) {
             next();
@@ -100,7 +103,7 @@ class HiChonCoin extends BlockChain {
 
        const block = Globalchain.create(id, name, genesis);
 
-       res.status(200).json({ message: "Created", data: block })
+       res.status(200).json({ message: "Created", data: Globalchain })
     }
 
     appendNewChild = (req,res) => {
@@ -109,13 +112,13 @@ class HiChonCoin extends BlockChain {
 
         const block = new Block(this.chain.length, timestamp, transaction);
 
-        this.addNewBlock(block); 
+        Globalchain.addNewBlock(block); 
         res.status(200).json({ message: "Chain Added!"})
     }
 
-    getChain = (rew,res) => {
-        res.status(200).json({chain: new BlockChain})
-    } 
+    // getChain = (rew,res) => {
+    //     res.status(200).json({chain: Globalchain})
+    // } 
 }
 
 const Controller = new HiChonCoin();
@@ -123,9 +126,15 @@ const Controller = new HiChonCoin();
 app.get("/", (req,res) => {
     res.send("Hello World");
 })
-app.post('/api/blockchain', Controller.validateNewChain, Controller.craeteNewChain);
+
+//get chain
 app.get("/api/blockchain",Controller.getChain);
-app.post("/api/blockchian/append", Controller.appendNewChild);
+
+//add block
+app.post("/api/blockchain", Controller.appendNewChild);
+
+//genesis block
+app.post('/api/blockchain/genesis', Controller.validateNewChain, Controller.craeteNewChain);
 
 app.listen(9000, () => {
     console.log("server start on port 9000");
