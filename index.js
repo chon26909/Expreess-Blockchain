@@ -20,6 +20,7 @@ class Block {
     }
 
     computeHash() {
+        
         return sha256(
             this.index + this.precedingHash + this.timestamp + JSON.stringify(this.transaction).toString()
         );
@@ -51,7 +52,7 @@ class BlockChain {
     }
 
     addNewBlock(newBlock) {
-        
+
         newBlock.precedingHash = this.obtainLatestBlock().hash;
         newBlock.hash = newBlock.computeHash();
         this.blockchain.push(newBlock);
