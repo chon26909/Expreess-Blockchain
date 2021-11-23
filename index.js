@@ -73,9 +73,12 @@ class BlockChain {
     }
 }
 
-class ChonCoin extends BlockChain {
+const Globalchain = new BlockChain();
+
+class HiChonCoin extends BlockChain {
 
     constructor() {
+        super();
         this.chain = [];
     }
 
@@ -95,7 +98,7 @@ class ChonCoin extends BlockChain {
 
         const { id, name, genesis } = req.body;
 
-       const block = this.create(id, name, genesis);
+       const block = Globalchain.create(id, name, genesis);
 
        res.status(200).json({ message: "Created", data: block })
     }
@@ -109,9 +112,21 @@ class ChonCoin extends BlockChain {
         this.addNewBlock(block); 
         res.status(200).json({ message: "Chain Added!"})
     }
+
+    getChain = (rew,res) => {
+        res.status(200).json({chain: new BlockChain})
+    } 
 }
 
-const Controller = new ChonCoin();
+const Controller = new HiChonCoin();
 
+app.get("/", (req,res) => {
+    res.send("Hello World");
+})
 app.post('/api/blockchain', Controller.validateNewChain, Controller.craeteNewChain);
-// app.get("/api/blockchain",Controller.getChain)
+// app.get("/api/blockchain",Controller.getChain);
+// app.post("/api/blockchian/append", Controller.appendNewChild);
+
+app.listen(9000, () => {
+    console.log("server start on port 9000");
+});
