@@ -124,8 +124,8 @@ app.get("/", (req,res) => {
     res.send("Hello World");
 })
 app.post('/api/blockchain', Controller.validateNewChain, Controller.craeteNewChain);
-// app.get("/api/blockchain",Controller.getChain);
-// app.post("/api/blockchian/append", Controller.appendNewChild);
+app.get("/api/blockchain",Controller.getChain);
+app.post("/api/blockchian/append", Controller.appendNewChild);
 
 app.listen(9000, () => {
     console.log("server start on port 9000");
