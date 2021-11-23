@@ -51,6 +51,7 @@ class BlockChain {
     }
 
     addNewBlock(newBlock) {
+        
         newBlock.precedingHash = this.obtainLatestBlock().hash;
         newBlock.hash = newBlock.computeHash();
         this.blockchain.push(newBlock);
@@ -82,7 +83,7 @@ class HiChonCoin extends BlockChain {
         super();
         this.chain = [];
     }
-    
+
 
     validateNewChain = (req,res,next) => {
 
