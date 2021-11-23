@@ -106,8 +106,9 @@ class HiChonCoin extends BlockChain {
        res.status(200).json({ message: "Created", data: Globalchain })
     }
 
+    
     appendNewChild = (req,res) => {
-
+        
         const { timestamp, transaction } = req.body;
 
         const block = new Block(this.chain.length, timestamp, transaction);
