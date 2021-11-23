@@ -82,6 +82,7 @@ class HiChonCoin extends BlockChain {
         super();
         this.chain = [];
     }
+    
 
     validateNewChain = (req,res,next) => {
 
@@ -106,7 +107,7 @@ class HiChonCoin extends BlockChain {
        res.status(200).json({ message: "Created", data: Globalchain })
     }
 
-    
+
     appendNewChild = (req,res) => {
         
         const { timestamp, transaction } = req.body;
